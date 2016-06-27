@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataChecker", "DataChecker\DataChecker.csproj", "{3033D8F3-BB0F-40C9-A857-E745CA6778E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XYPlot", "XYPlot\XYPlot.csproj", "{4148B757-3FE8-4D05-9328-183B696484DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeViewEx", "TreeviewEx\TreeViewEx.csproj", "{AB659CEC-47FB-46B9-AD6A-C6F358D97422}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3033D8F3-BB0F-40C9-A857-E745CA6778E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3033D8F3-BB0F-40C9-A857-E745CA6778E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3033D8F3-BB0F-40C9-A857-E745CA6778E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3033D8F3-BB0F-40C9-A857-E745CA6778E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4148B757-3FE8-4D05-9328-183B696484DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4148B757-3FE8-4D05-9328-183B696484DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4148B757-3FE8-4D05-9328-183B696484DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4148B757-3FE8-4D05-9328-183B696484DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB659CEC-47FB-46B9-AD6A-C6F358D97422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB659CEC-47FB-46B9-AD6A-C6F358D97422}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB659CEC-47FB-46B9-AD6A-C6F358D97422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB659CEC-47FB-46B9-AD6A-C6F358D97422}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
