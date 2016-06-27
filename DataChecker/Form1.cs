@@ -21,16 +21,11 @@ namespace DataChecker
 {
     public partial class Form1 : Form
     {
-        private TreeViewCancelEventHandler checkForCheckedChildren;
-        ContextMenuStrip treeViewSignalContextMenu1;
         UniqID Uid;
-        List<BWMemoryDataPacket> dataPacketList;
-        List<DatadumpForCheck> Datadumps;
         TreeViewEx mytreeview1;
-
-        List<NSXYPlot.XYPlotCtrl> XYDisplay;
-        Rectangle RectWaveformBase;
-
+        List<DataPlot> DataPlots;
+        int PlotBase_Top, PlotBase_Left, PlotBase_Height, PlotBase_Width;
+        
         public Form1()
         {
             InitializeComponent();
@@ -40,38 +35,21 @@ namespace DataChecker
             mytreeview1.Left = treeView1.Left;
             mytreeview1.Height = treeView1.Height;
             mytreeview1.Width = treeView1.Width;
-
+            
             treeView1.Visible = false;     //hide the original treeview1
             this.Controls.Add(mytreeview1);
 
             mytreeview1.Show();            //use mytreeview1 to replace original treeview1 to keep user interface
 
             mytreeview1.CheckBoxes = true;
-            Datadumps = new List<DatadumpForCheck>();
 
-            XYDisplay = new List<NSXYPlot.XYPlotCtrl>();
-            RectWaveformBase = xyPlotCtrl0.ClientRectangle;
+            DataPlots = new List<DataPlot>();
+            PlotBase_Top  = xyPlotCtrl0.Top;
+            PlotBase_Left  = xyPlotCtrl0.Left ;
+            PlotBase_Height  = xyPlotCtrl0.Height ;
+            PlotBase_Width  = xyPlotCtrl0.Width ;
+            xyPlotCtrl0.Visible = false;
 
-            //xyPlotCtrl0.Visible = false;
-
-        }
-
-        class DataError
-        {
-            public string ErrLable;   //The lable displayed for each error
-            //The time of error
-        }
-        class DatasetForCheck 
-        {
-            public BWDataset Dataset;
-            public List<DataError> ErrList;
-            public DatasetForCheck() { Dataset = new BWDataset(); ErrList = new List<DataError>(); }
-        }
-        class DatadumpForCheck
-        {
-            public string DatadumpFileName;
-            public List<DatasetForCheck> DatasetsForCheck;
-            public DatadumpForCheck() { DatasetsForCheck = new List<DatasetForCheck>(); }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -83,7 +61,7 @@ namespace DataChecker
             }
             AppendDatadump(mytreeview1, openFileDialog1.FileName, openFileDialog1.SafeFileName);
             //FillPrototypeTreeview(treeView1, openFileDialog1.SafeFileName);
-            dataPacketList = BWProcessMemoryData.DataPacketList;
+            //dataPacketList = BWProcessMemoryData.DataPacketList;
 
             //foreach (BWDataset dataset in datasetList)
             //{
@@ -100,9 +78,7 @@ namespace DataChecker
             
         }
         private void AppendDatadump(TreeView treeView1, String DatadumpFileName,String TreeViewNodeName)
-        {
-            DatadumpForCheck dd = new DatadumpForCheck();
-            dd.DatadumpFileName = DatadumpFileName;
+        {                        
 
             byte[] dumpedData = loadDumpedDataOneRun(DatadumpFileName);
             if (dumpedData == null || dumpedData.Length == 0)
@@ -119,21 +95,29 @@ namespace DataChecker
             TreeNode node = treeView1.Nodes.Add(TreeViewNodeName);
             foreach (BWDataset dataset in datasetList)
             {
-                TreeNode nd = new TreeNode();
-                //nd.Tag = Uid.GetUniqID();
-                nd.Tag = new UniqID();
-                var value = nd.Tag as UniqID;
-                value.GetUniqID();
+                TreeNode t = new TreeNode();
+                int n = Uid.GetUniqID();
+                DataNode dd = new DataNode(n);
+                dd.Dataset = dataset;
+                t.Tag = dd;
+                //var value = nd.Tag as DataNode;
+                //value.GetUniqID();
 
-                nd.Text = dataset.DataType.ToString() + " : " + dataset.Name.ToString();
-                nd.ToolTipText = nd.Tag.ToString();
-                node.Nodes.Add(nd);
-                DatasetForCheck dsc = new DatasetForCheck();
-                dsc.Dataset = dataset;
-                dsc.ErrList.Clear();
-                dd.DatasetsForCheck.Add(dsc);
+                t.Text = dataset.DataType.ToString() + " : " + dataset.Name.ToString();
+                t.ToolTipText = t.Tag.ToString();
+                node.Nodes.Add(t);               
+                
+                //create a plot for each of the dataset
+                DataPlot dp = new DataPlot(n);
+                dp.Plot = new XYPlotCtrl();
+                dp.Plot.Top = DataPlots.Count() * PlotBase_Height + PlotBase_Top;
+                dp.Plot.Height = PlotBase_Height;
+                dp.Plot.Left = PlotBase_Left;
+                dp.Plot.Width = PlotBase_Width;
+                dp.Plot.XYPlot1.AddDataset(dataset);
+                this.Controls.Add(dp.Plot);
+                DataPlots.Add(dp);
             }
-            Datadumps.Add(dd);
         }
 
         private void AppendDatapacketListToTreeView(List<BWMemoryDataPacket> dataPacketList, TreeView treeView1, string nodeName)
@@ -193,23 +177,24 @@ namespace DataChecker
 
             NSXYPlot.XYPlotCtrl a = new NSXYPlot.XYPlotCtrl();
             int dispx, dispy;
-            if (XYDisplay.Count() == 0) {
+            if (DataPlots.Count() == 0) {
                 dispx =100;
                 dispy = 100;
             }else{
-                dispx = XYDisplay.Last().Location.X + 10;
-                dispy = XYDisplay.Last().Location.Y + 100;
+                dispx = DataPlots.Last().Plot.Location.X + 10;
+                dispy = DataPlots.Last().Plot.Location.Y + 100;
             }
 
             a.Location = new System.Drawing.Point(dispx , dispy);
-            XYDisplay.Add(a);
+            DataPlot dp = new DataPlot(Uid.GetUniqID(), a);
+            DataPlots.Add(dp);
             a.BringToFront();
             System.Windows.Forms.Form lastOpenedForm = Application.OpenForms[Application.OpenForms.Count - 1];
             lastOpenedForm.Controls.Add (a);
-            if (XYDisplay.Count() > 1)
+            if (DataPlots.Count() > 1)
             {
-                lastOpenedForm.Controls.Remove(XYDisplay.First());
-                XYDisplay.Remove(XYDisplay.First());
+                lastOpenedForm.Controls.Remove(DataPlots.First().Plot);
+                DataPlots.Remove(DataPlots.First());
             }
         }
         private void btnShowChecked_Click(object sender, EventArgs e)
@@ -222,7 +207,7 @@ namespace DataChecker
             mytreeview1.CollapseAll();
 
             // Add the checkForCheckedChildren event handler to the BeforeExpand event.
-            mytreeview1.BeforeExpand += checkForCheckedChildren;
+            //mytreeview1.BeforeExpand += checkForCheckedChildren;
 
             // Expand all nodes of mytreeview1. Nodes without checked children are 
             // prevented from expanding by the checkForCheckedChildren event handler.
@@ -230,7 +215,7 @@ namespace DataChecker
 
             // Remove the checkForCheckedChildren event handler from the BeforeExpand 
             // event so manual node expansion will work correctly.
-            mytreeview1.BeforeExpand -= checkForCheckedChildren;
+            //mytreeview1.BeforeExpand -= checkForCheckedChildren;
 
             // Enable redrawing of mytreeview1.
             mytreeview1.EndUpdate();

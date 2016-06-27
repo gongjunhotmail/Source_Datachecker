@@ -15,18 +15,16 @@ namespace NSTreeViewEx
         {
             CreateTreeViewSignalContextMenuStrip();
             this.ContextMenuStrip = treeViewSignalContextMenu1;
-            FillPrototypeTreeview(this, "Test");
+           // FillPrototypeTreeview(this, "Test");
         }
 
         public TreeViewEx(ContextMenuStrip cm1)
-        {
-            //myTreeView = tr1;            
+        {            
             treeViewSignalContextMenu1 = cm1;
             this.ContextMenuStrip = treeViewSignalContextMenu1;
         }
         public TreeViewEx(TreeView tr1, ContextMenuStrip cm1)
-        {
-            //myTreeView = tr1;            
+        {            
             CopyTreeview(this, tr1);
             treeViewSignalContextMenu1 = cm1;
             this.ContextMenuStrip = treeViewSignalContextMenu1;

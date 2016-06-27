@@ -12,7 +12,7 @@
          <Members>
           <Member Name="#.ctor(System.Drawing.Graphics,System.Windows.Forms.Control)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-06-24 22:36:12Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-06-27 23:04:23Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="CriticalWarning" Path="d:\Jobs\DataChecker\Source\XYPlot" File="XYPlot.cs" Line="193">'XYPlot.XYPlot(Graphics, Control)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;XYPlot..ctor(Graphics, Control)&#xD;&#xA;XYPlot.commonConstructor():Void</Issue>
              <Issue Certainty="95" Level="CriticalWarning" Path="d:\Jobs\DataChecker\Source\XYPlot" File="XYPlot.cs" Line="193">'XYPlot.XYPlot(Graphics, Control)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;XYPlot..ctor(Graphics, Control)&#xD;&#xA;XYPlot.commonConstructor():Void&#xD;&#xA;XYPlot.CalculateClientRectangle():Void</Issue>
             </Message>
@@ -20,7 +20,7 @@
           </Member>
           <Member Name="#.ctor(System.Drawing.Graphics,System.Windows.Forms.Control,System.Drawing.Point,System.Drawing.Size)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-06-24 22:36:12Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-06-27 23:04:23Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="CriticalWarning" Path="d:\Jobs\DataChecker\Source\XYPlot" File="XYPlot.cs" Line="202">'XYPlot.XYPlot(Graphics, Control, Point, Size)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;XYPlot..ctor(Graphics, Control, Point, Size)&#xD;&#xA;XYPlot.commonConstructor():Void</Issue>
              <Issue Certainty="95" Level="CriticalWarning" Path="d:\Jobs\DataChecker\Source\XYPlot" File="XYPlot.cs" Line="202">'XYPlot.XYPlot(Graphics, Control, Point, Size)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;XYPlot..ctor(Graphics, Control, Point, Size)&#xD;&#xA;XYPlot.commonConstructor():Void&#xD;&#xA;XYPlot.CalculateClientRectangle():Void</Issue>
             </Message>
@@ -28,7 +28,7 @@
           </Member>
           <Member Name="#.ctor(System.Drawing.Graphics,System.Windows.Forms.Control,System.Drawing.Rectangle)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-06-24 22:36:12Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-06-27 23:04:23Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="CriticalWarning" Path="d:\Jobs\DataChecker\Source\XYPlot" File="XYPlot.cs" Line="211">'XYPlot.XYPlot(Graphics, Control, Rectangle)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;XYPlot..ctor(Graphics, Control, Rectangle)&#xD;&#xA;XYPlot.commonConstructor():Void</Issue>
              <Issue Certainty="95" Level="CriticalWarning" Path="d:\Jobs\DataChecker\Source\XYPlot" File="XYPlot.cs" Line="211">'XYPlot.XYPlot(Graphics, Control, Rectangle)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;XYPlot..ctor(Graphics, Control, Rectangle)&#xD;&#xA;XYPlot.commonConstructor():Void&#xD;&#xA;XYPlot.CalculateClientRectangle():Void</Issue>
             </Message>
@@ -36,21 +36,21 @@
           </Member>
           <Member Name="#DrawReversibleCrossLines(System.Double,System.Boolean)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-06-24 22:36:12Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-06-27 23:04:23Z" FixCategory="NonBreaking">
              <Issue Certainty="33" Level="CriticalError" Path="d:\Jobs\DataChecker\Source\XYPlot" File="XYPlot.cs" Line="731">'XYPlot.DrawReversibleCrossLines(double, bool)' calls into 'ControlPaint.DrawReversibleLine(Point, Point, Color)' which has a LinkDemand. By making this call, 'ControlPaint.DrawReversibleLine(Point, Point, Color)' is indirectly exposed to user code. Review the following call stack that might expose a way to circumvent security protection: &#xD;&#xA;   -&gt;'XYPlot.DrawReversibleCrossLines(double, bool)'&#xD;&#xA;   -&gt;'XYPlot.DrawReversibleCrossLines(double, bool)'</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#DrawReversibleCrossLines(System.Drawing.Point)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-06-24 22:36:12Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-06-27 23:04:23Z" FixCategory="NonBreaking">
              <Issue Certainty="33" Level="CriticalError" Path="d:\Jobs\DataChecker\Source\XYPlot" File="XYPlot.cs" Line="714">'XYPlot.DrawReversibleCrossLines(Point)' calls into 'ControlPaint.DrawReversibleLine(Point, Point, Color)' which has a LinkDemand. By making this call, 'ControlPaint.DrawReversibleLine(Point, Point, Color)' is indirectly exposed to user code. Review the following call stack that might expose a way to circumvent security protection: &#xD;&#xA;   -&gt;'XYPlot.DrawReversibleCrossLines(Point)'&#xD;&#xA;   -&gt;'XYPlot.DrawReversibleCrossLines(Point)'</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#DrawReversibleRectangle(System.Drawing.Point,System.Drawing.Point)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-06-24 22:36:12Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-06-27 23:04:23Z" FixCategory="NonBreaking">
              <Issue Certainty="33" Level="CriticalError" Path="d:\Jobs\DataChecker\Source\XYPlot" File="XYPlot.cs" Line="2171">'XYPlot.DrawReversibleRectangle(Point, Point)' calls into 'ControlPaint.FillReversibleRectangle(Rectangle, Color)' which has a LinkDemand. By making this call, 'ControlPaint.FillReversibleRectangle(Rectangle, Color)' is indirectly exposed to user code. Review the following call stack that might expose a way to circumvent security protection: &#xD;&#xA;   -&gt;'XYPlot.DrawReversibleRectangle(Point, Point)'&#xD;&#xA;   -&gt;'XYPlot.DrawReversibleRectangle(Point, Point)'</Issue>
             </Message>
            </Messages>
@@ -61,14 +61,14 @@
          <Members>
           <Member Name="#DrawReversibleLine(System.Drawing.Point,System.Drawing.Point)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-06-24 22:36:12Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-06-27 23:04:23Z" FixCategory="NonBreaking">
              <Issue Certainty="33" Level="CriticalError" Path="d:\Jobs\DataChecker\Source\XYPlot" File="XYPlotCtrl.cs" Line="88">'XYPlotCtrl.DrawReversibleLine(Point, Point)' calls into 'ControlPaint.DrawReversibleLine(Point, Point, Color)' which has a LinkDemand. By making this call, 'ControlPaint.DrawReversibleLine(Point, Point, Color)' is indirectly exposed to user code. Review the following call stack that might expose a way to circumvent security protection: &#xD;&#xA;   -&gt;'XYPlotCtrl.DrawReversibleLine(Point, Point)'&#xD;&#xA;   -&gt;'XYPlotCtrl.DrawReversibleLine(Point, Point)'</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#DrawReversibleRectangle(System.Drawing.Point,System.Drawing.Point)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-06-24 22:36:12Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-06-27 23:04:23Z" FixCategory="NonBreaking">
              <Issue Certainty="33" Level="CriticalError" Path="d:\Jobs\DataChecker\Source\XYPlot" File="XYPlotCtrl.cs" Line="72">'XYPlotCtrl.DrawReversibleRectangle(Point, Point)' calls into 'ControlPaint.FillReversibleRectangle(Rectangle, Color)' which has a LinkDemand. By making this call, 'ControlPaint.FillReversibleRectangle(Rectangle, Color)' is indirectly exposed to user code. Review the following call stack that might expose a way to circumvent security protection: &#xD;&#xA;   -&gt;'XYPlotCtrl.DrawReversibleRectangle(Point, Point)'&#xD;&#xA;   -&gt;'XYPlotCtrl.DrawReversibleRectangle(Point, Point)'</Issue>
             </Message>
            </Messages>
@@ -79,14 +79,14 @@
          <Members>
           <Member Name="#DrawReversibleLine(System.Drawing.Point,System.Drawing.Point)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-06-24 22:36:12Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-06-27 23:04:23Z" FixCategory="NonBreaking">
              <Issue Certainty="33" Level="CriticalError" Path="d:\Jobs\DataChecker\Source\XYPlot" File="XYPlotViewCtrl.cs" Line="482">'XYPlotViewCtrl.DrawReversibleLine(Point, Point)' calls into 'ControlPaint.DrawReversibleLine(Point, Point, Color)' which has a LinkDemand. By making this call, 'ControlPaint.DrawReversibleLine(Point, Point, Color)' is indirectly exposed to user code. Review the following call stack that might expose a way to circumvent security protection: &#xD;&#xA;   -&gt;'XYPlotViewCtrl.DrawReversibleLine(Point, Point)'&#xD;&#xA;   -&gt;'XYPlotViewCtrl.DrawReversibleLine(Point, Point)'</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#DrawReversibleRectangle(System.Drawing.Point,System.Drawing.Point)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-06-24 22:36:12Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2016-06-27 23:04:23Z" FixCategory="NonBreaking">
              <Issue Certainty="33" Level="CriticalError" Path="d:\Jobs\DataChecker\Source\XYPlot" File="XYPlotViewCtrl.cs" Line="466">'XYPlotViewCtrl.DrawReversibleRectangle(Point, Point)' calls into 'ControlPaint.FillReversibleRectangle(Rectangle, Color)' which has a LinkDemand. By making this call, 'ControlPaint.FillReversibleRectangle(Rectangle, Color)' is indirectly exposed to user code. Review the following call stack that might expose a way to circumvent security protection: &#xD;&#xA;   -&gt;'XYPlotViewCtrl.DrawReversibleRectangle(Point, Point)'&#xD;&#xA;   -&gt;'XYPlotViewCtrl.DrawReversibleRectangle(Point, Point)'</Issue>
             </Message>
            </Messages>
