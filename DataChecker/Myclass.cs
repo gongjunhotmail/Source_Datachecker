@@ -41,6 +41,7 @@ namespace DataChecker
   {
       public int UniqId;
       public NSXYPlot.XYPlotCtrl Plot;
+      public Label Title;
       public DataPlot(int sn) { UniqId = sn; }
       public DataPlot(int sn, NSXYPlot.XYPlotCtrl plot) { UniqId = sn; Plot = plot; }
   }

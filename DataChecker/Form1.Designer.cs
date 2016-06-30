@@ -58,8 +58,11 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.treeView1 = new NSTreeViewEx.TreeViewEx();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblDrawTitle = new System.Windows.Forms.Label();
             this.xyPlotCtrl0 = new NSXYPlot.XYPlotCtrl();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAddFile
@@ -126,7 +129,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1602, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1548, 24);
             this.menuStrip1.TabIndex = 38;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -167,22 +170,40 @@
             this.treeView1.Size = new System.Drawing.Size(417, 669);
             this.treeView1.TabIndex = 40;
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.lblDrawTitle);
+            this.panel1.Controls.Add(this.xyPlotCtrl0);
+            this.panel1.Location = new System.Drawing.Point(457, 65);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1088, 669);
+            this.panel1.TabIndex = 41;
+            // 
+            // lblDrawTitle
+            // 
+            this.lblDrawTitle.AutoSize = true;
+            this.lblDrawTitle.Location = new System.Drawing.Point(351, 640);
+            this.lblDrawTitle.Name = "lblDrawTitle";
+            this.lblDrawTitle.Size = new System.Drawing.Size(41, 15);
+            this.lblDrawTitle.TabIndex = 41;
+            this.lblDrawTitle.Text = "label2";
+            // 
             // xyPlotCtrl0
             // 
             this.xyPlotCtrl0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.xyPlotCtrl0.Location = new System.Drawing.Point(437, 66);
+            this.xyPlotCtrl0.Location = new System.Drawing.Point(3, 3);
             this.xyPlotCtrl0.Name = "xyPlotCtrl0";
-            this.xyPlotCtrl0.Size = new System.Drawing.Size(1139, 669);
-            this.xyPlotCtrl0.TabIndex = 39;
+            this.xyPlotCtrl0.Size = new System.Drawing.Size(1055, 631);
+            this.xyPlotCtrl0.TabIndex = 40;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1602, 749);
+            this.ClientSize = new System.Drawing.Size(1548, 749);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.treeView1);
-            this.Controls.Add(this.xyPlotCtrl0);
             this.Controls.Add(this.btnShowChecked);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnTest);
@@ -196,6 +217,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,9 +234,11 @@
         private System.Windows.Forms.Button btnShowChecked;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private NSXYPlot.XYPlotCtrl xyPlotCtrl0;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private NSTreeViewEx.TreeViewEx treeView1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblDrawTitle;
+        private NSXYPlot.XYPlotCtrl xyPlotCtrl0;
     }
 }
 

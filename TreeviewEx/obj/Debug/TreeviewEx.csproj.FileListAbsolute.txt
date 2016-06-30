@@ -3,8 +3,3 @@ D:\Jobs\DataChecker\Source_seprate\TreeviewEx\bin\Debug\TreeviewEx.pdb
 D:\Jobs\DataChecker\Source_seprate\TreeviewEx\obj\Debug\TreeviewEx.dll
 D:\Jobs\DataChecker\Source_seprate\TreeviewEx\obj\Debug\TreeviewEx.pdb
 D:\Jobs\DataChecker\Source_seprate\TreeviewEx\obj\Debug\TreeviewEx.csprojResolveAssemblyReference.cache
-D:\Jobs\DataChecker\Source\TreeviewEx\bin\Debug\TreeviewEx.dll
-D:\Jobs\DataChecker\Source\TreeviewEx\bin\Debug\TreeviewEx.pdb
-D:\Jobs\DataChecker\Source\TreeviewEx\obj\Debug\TreeViewEx.csprojResolveAssemblyReference.cache
-D:\Jobs\DataChecker\Source\TreeviewEx\obj\Debug\TreeviewEx.dll
-D:\Jobs\DataChecker\Source\TreeviewEx\obj\Debug\TreeviewEx.pdb

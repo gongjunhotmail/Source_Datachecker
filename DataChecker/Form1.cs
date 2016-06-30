@@ -25,30 +25,28 @@ namespace DataChecker
         TreeViewEx mytreeview1;
         List<DataPlot> DataPlots;
         int PlotBase_Top, PlotBase_Left, PlotBase_Height, PlotBase_Width;
-        
+        int PlotInterval = 30;    // the interval between 2 plots
         public Form1()
         {
             InitializeComponent();
             Uid = new UniqID();
+
             mytreeview1 = new TreeViewEx();
-            mytreeview1.Top = treeView1.Top;
-            mytreeview1.Left = treeView1.Left;
-            mytreeview1.Height = treeView1.Height;
-            mytreeview1.Width = treeView1.Width;
-            
-            treeView1.Visible = false;     //hide the original treeview1
+            mytreeview1.Location = treeView1.Location;
+            mytreeview1.Size = treeView1.Size;
             this.Controls.Add(mytreeview1);
-
+            treeView1.Visible = false;     //hide the original treeview1
             mytreeview1.Show();            //use mytreeview1 to replace original treeview1 to keep user interface
-
             mytreeview1.CheckBoxes = true;
 
-            DataPlots = new List<DataPlot>();
-            PlotBase_Top  = xyPlotCtrl0.Top;
-            PlotBase_Left  = xyPlotCtrl0.Left ;
+            PlotBase_Top  = 0;
+            PlotBase_Left  = 0;
             PlotBase_Height  = xyPlotCtrl0.Height ;
             PlotBase_Width  = xyPlotCtrl0.Width ;
             xyPlotCtrl0.Visible = false;
+            PlotInterval = 10;
+
+            DataPlots = new List<DataPlot>();
 
         }
 
@@ -96,9 +94,10 @@ namespace DataChecker
             foreach (BWDataset dataset in datasetList)
             {
                 TreeNode t = new TreeNode();
-                int n = Uid.GetUniqID();
-                DataNode dd = new DataNode(n);
+                int sn = Uid.GetUniqID();
+                DataNode dd = new DataNode(sn);
                 dd.Dataset = dataset;
+                
                 t.Tag = dd;
                 //var value = nd.Tag as DataNode;
                 //value.GetUniqID();
@@ -108,15 +107,22 @@ namespace DataChecker
                 node.Nodes.Add(t);               
                 
                 //create a plot for each of the dataset
-                DataPlot dp = new DataPlot(n);
+                DataPlot dp = new DataPlot(sn);
+                dp.UniqId = sn;
                 dp.Plot = new XYPlotCtrl();
-                dp.Plot.Top = DataPlots.Count() * PlotBase_Height + PlotBase_Top;
+
+                int EstimateHeight = (DataPlots.Count()+1) * PlotBase_Height + PlotBase_Top ;
+                if (EstimateHeight > 32767)                    
+                    break;
+                this.panel1.Controls.Add(dp.Plot);
+                Application.DoEvents();
+                dp.Plot.Top = DataPlots.Count() * PlotBase_Height + PlotBase_Top + PlotInterval;
                 dp.Plot.Height = PlotBase_Height;
                 dp.Plot.Left = PlotBase_Left;
                 dp.Plot.Width = PlotBase_Width;
                 dp.Plot.XYPlot1.AddDataset(dataset);
-                this.Controls.Add(dp.Plot);
                 DataPlots.Add(dp);
+                Application.DoEvents();
             }
         }
 
@@ -167,35 +173,38 @@ namespace DataChecker
             return dumpedData;
         }
 
+        private int CalcTopPosition(int PlotNumber)
+        {
+            //it calculates the vertical distance between Top positions of nth plot to the 0th plot in the DataPlots .
+
+            if (PlotNumber <= 0) return 0;
+            int n;
+            int TopPosition=0;
+
+            if (PlotNumber == 0) return 0;
+
+            for (n = 1; n < DataPlots.Count; n++)
+            {
+                TopPosition = TopPosition + DataPlots[n].Plot.Height + PlotInterval;
+            }
+            return TopPosition;
+        }
+        private void JumpToPlot(int PlotNumber)
+        {
+            if (PlotNumber > DataPlots.Count-1)
+                return;
+            panel1.VerticalScroll.Value = 0;
+            panel1.VerticalScroll.Value = CalcTopPosition(PlotNumber);
+        }
         private void btnTest_Click(object sender, EventArgs e)
         {
-            //DialogResult result = openFileDialog1.ShowDialog();
-            //if (result == DialogResult.OK) // Test result.
-            //{
-            //    loadRawData(openFileDialog1.FileName);                
-            //}
 
-            NSXYPlot.XYPlotCtrl a = new NSXYPlot.XYPlotCtrl();
-            int dispx, dispy;
-            if (DataPlots.Count() == 0) {
-                dispx =100;
-                dispy = 100;
-            }else{
-                dispx = DataPlots.Last().Plot.Location.X + 10;
-                dispy = DataPlots.Last().Plot.Location.Y + 100;
+            if(DataPlots.Count > 3){
+                //panel1.ScrollControlIntoView(DataPlots[DataPlots.Count -1].Plot);
+                //JumpToPlot(2);
+                //Application.DoEvents();
             }
-
-            a.Location = new System.Drawing.Point(dispx , dispy);
-            DataPlot dp = new DataPlot(Uid.GetUniqID(), a);
-            DataPlots.Add(dp);
-            a.BringToFront();
-            System.Windows.Forms.Form lastOpenedForm = Application.OpenForms[Application.OpenForms.Count - 1];
-            lastOpenedForm.Controls.Add (a);
-            if (DataPlots.Count() > 1)
-            {
-                lastOpenedForm.Controls.Remove(DataPlots.First().Plot);
-                DataPlots.Remove(DataPlots.First());
-            }
+            
         }
         private void btnShowChecked_Click(object sender, EventArgs e)
         {
@@ -265,8 +274,6 @@ namespace DataChecker
         {
 
         }
-
-
 
     }
 
